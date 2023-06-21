@@ -3,8 +3,23 @@
 --------------------------------------------------------------*/
 body {
   font-family: $font-default;
-  background: darken($secondary, 5);
-  color: $white;
+  color: #fff;
+  background: url("../img/bg.jpg") top center no-repeat;
+  background-size: cover;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba($secondary, .8);
+  }
+  @media (min-width: 1024px) {
+    background-attachment: fixed;
+  }
 }
 
 a {
@@ -12,7 +27,7 @@ a {
   text-decoration: none;
 }
 
-a:hover {
+a:hover  {
   color: lighten($primary, 10);
   text-decoration: none;
 }
@@ -21,37 +36,8 @@ h1, h2, h3, h4, h5, h6 {
   font-family: $font-primary;
 }
 
-/*--------------------------------------------------------------
-# Preloader
---------------------------------------------------------------*/
-#preloader {  
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 9999;
-  overflow: hidden;
-  background: $secondary;
-}
-
-#preloader:before {
-  content: "";
-  position: fixed;
-  top: calc(50% - 30px);
-  left: calc(50% - 30px);
-  border: 6px solid $secondary;
-  border-top-color: $primary;
-  border-bottom-color: $primary;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: animate-preloader 1s linear infinite;
-}
-
-@keyframes animate-preloader {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+#main {
+  position: relative;
 }
 
 /*--------------------------------------------------------------
@@ -64,24 +50,21 @@ h1, h2, h3, h4, h5, h6 {
   right: 15px;
   bottom: 15px;
   z-index: 996;
-  width: 44px;
-  height: 44px;
-  border-radius: 50px;
+  background: $primary;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
   transition: all 0.4s;
-  border: 2px solid $primary;
 
   i {
     font-size: 28px;
-    color: $primary;
+    color: #fff;
     line-height: 0;
   }
 
   &:hover  {
-    background: $primary;
-    color: $secondary;
-    i {
-      color: $default;
-    }
+    background: lighten($primary, 8);
+    color: #fff;
   }
 
   &.active {
@@ -89,13 +72,4 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 1;
   }
 
-}
-
-/*--------------------------------------------------------------
-# Disable aos animation delay on mobile devices
---------------------------------------------------------------*/
-@media screen and (max-width: 768px) {
-  [data-aos-delay] {
-    transition-delay: 0 !important;
-  }
 }
